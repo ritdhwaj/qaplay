@@ -113,14 +113,15 @@ function initDownloadButtons() {
 
             // Simulate download - replace with actual download URLs
             setTimeout(() => {
+                const macUrl = 'https://drive.google.com/file/d/1P0AOCbIarcAroR4xz3mA4nfRgpl1kzkK/view?usp=sharing';
+                const winUrl = 'https://drive.google.com/file/d/17Sguk-GKyxbNSEis2bV4GMmVtoe_6BOf/view?usp=sharing';
+
                 if (isMac) {
-                    // Replace with actual macOS .dmg URL
-                    showNotification('Download started! Check your downloads folder.', 'success');
-                    // window.location.href = '/downloads/QAPlay-1.0.0.dmg';
+                    showNotification('Opening macOS download page...', 'success');
+                    window.open(macUrl, '_blank');
                 } else {
-                    // Replace with actual Windows .exe URL
-                    showNotification('Download started! Check your downloads folder.', 'success');
-                    // window.location.href = '/downloads/QAPlay-Setup-1.0.0.exe';
+                    showNotification('Opening Windows download page...', 'success');
+                    window.open(winUrl, '_blank');
                 }
             }, 1000);
         });

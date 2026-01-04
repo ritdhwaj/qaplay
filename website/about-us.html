@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - QAPlay</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .page-content {
+            max-width: 800px;
+            margin: calc(var(--nav-height) + 60px) auto 100px;
+            padding: 0 24px;
+        }
+
+        .page-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 32px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-content h2 {
+            font-size: 1.5rem;
+            margin: 40px 0 20px;
+            color: var(--text-primary);
+        }
+
+        .page-content p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .vision-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 32px;
+            border-radius: 20px;
+            margin-top: 40px;
+        }
+
+        .vision-card h3 {
+            color: var(--accent-primary);
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="main.png" alt="QAPlay Logo" class="logo-img">
+                <span class="logo-text">QAPlay</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#tech-stack">Tech Stack</a></li>
+                <li><a href="index.html#getting-started">Get Started</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="page-content">
+        <h1>About Us</h1>
+        <p>QAPlay was born out of a simple observation: QA engineers and developers spend too much time switching
+            between tools to capture network traffic, mock APIs, and write test scripts. We wanted to build a single,
+            powerful desktop application that brings all these capabilities together in an intuitive and modern
+            interface.</p>
+
+        <h2>Our Mission</h2>
+        <p>Our mission is to empower testing teams to achieve higher productivity and quality through superior tooling.
+            We believe that developer tools should not only be functional but also beautiful and pleasurable to use.</p>
+
+        <div class="vision-card">
+            <h3>Our Vision</h3>
+            <p>To become the standard tool for modern web application testing and development, bridging the gap between
+                manual exploration and automated regression testing.</p>
+        </div>
+
+        <h2>Open Source Spirit</h2>
+        <p>QAPlay is built with open technologies and a deep respect for the developer community. We believe in
+            providing value first and fostering an ecosystem where quality is easier to achieve for everyone.</p>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="main.png" alt="QAPlay Logo" class="logo-img">
+                        <span class="logo-text">QAPlay</span>
+                    </div>
+                    <p>Made with ❤️ for QA Engineers and Developers</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h5>Product</h5>
+                        <a href="index.html#features">Features</a>
+                        <a href="index.html#download">Download</a>
+                    </div>
+                    <div class="footer-column">
+                        <h5>Company</h5>
+                        <a href="about-us.html">About Us</a>
+                        <a href="contact-us.html">Contact Us</a>
+                        <a href="privacy-policy.html">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 QAPlay. Open Source under MIT License.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -352,6 +352,23 @@ ul {
     animation: fadeInUp 0.8s ease 0.4s backwards;
 }
 
+.hero-note {
+    max-width: 600px;
+    margin: 24px auto 8px;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-align: center;
+    animation: fadeInUp 0.8s ease 0.35s backwards;
+}
+
+.hero-note strong {
+    color: var(--accent-secondary);
+}
+
 /* App Preview */
 .hero-visual {
     margin-top: 60px;
