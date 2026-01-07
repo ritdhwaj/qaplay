@@ -4,7 +4,7 @@
 
 QAPlay is a powerful desktop application for QA engineers and developers to capture network traffic, create API mocks, check page performance analytics, record browser sessions, and generate Playwright test scripts — all from an intuitive, modern interface.
 
-![QAPlay](./src/assets/logo.png)
+![QAPlay](./website/main.png)
 
 ---
 
@@ -55,27 +55,7 @@ QAPlay is a powerful desktop application for QA engineers and developers to capt
 
 ### Installation
 
-```bash
-# Clone the repository
-git clone <repository-url>
-cd interceptqai
-
-# Install dependencies
-npm install
-
-# Install Playwright browsers (required for browser automation)
-npx playwright install
-```
-
-### Running the Application
-
-```bash
-# Development mode
-npm start
-
-# Build for production
-npm run build
-```
+Download .dmg or .exe file from https://www.qaplay.in and run it to install QAPlay.
 
 ---
 
@@ -169,59 +149,6 @@ Insert common Playwright actions:
 
 ---
 
-## 📁 Project Structure
-
-```
-interceptqai/
-├── main.js                 # Electron main process
-├── src/
-│   ├── App.jsx             # Main React application
-│   ├── components/         # React components
-│   │   ├── AnalyticsTab.jsx
-│   │   ├── BrowserLauncher.jsx
-│   │   ├── ErrorsTab.jsx
-│   │   ├── MockEditor.jsx
-│   │   ├── MocksTab.jsx
-│   │   ├── NetworkTable.jsx
-│   │   ├── RequestDetails.jsx
-│   │   └── ScriptTab.jsx
-│   ├── services/           # Backend services
-│   │   ├── MockManager.js      # Mock storage & management
-│   │   ├── NetworkCapture.js   # Playwright browser control
-│   │   ├── ScriptManager.js    # Script storage & execution
-│   │   └── recorder.js         # Action recording logic
-│   ├── styles/
-│   │   └── App.css         # Application styles
-│   └── assets/
-│       └── logo.png        # Application logo
-├── public/
-│   └── index.html          # HTML template
-├── build/                  # Webpack output
-└── dist/                   # Electron Builder output
-```
-
----
-
-## ⚙️ Build & Distribution
-
-### Build for macOS
-```bash
-npm run build:mac
-```
-Creates a `.dmg` installer in the `dist/` folder.
-
-### Build for Windows
-```bash
-npm run build:win
-```
-Creates an NSIS installer in the `dist/` folder.
-
-### Build for All Platforms
-```bash
-npm run build:all
-```
-
----
 
 ## 🛠️ Technology Stack
 
