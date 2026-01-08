@@ -113,8 +113,8 @@ function initDownloadButtons() {
 
             // Simulate download - replace with actual download URLs
             setTimeout(() => {
-                const macUrl = 'https://drive.google.com/file/d/1P0AOCbIarcAroR4xz3mA4nfRgpl1kzkK/view?usp=sharing';
-                const winUrl = 'https://drive.google.com/file/d/17Sguk-GKyxbNSEis2bV4GMmVtoe_6BOf/view?usp=sharing';
+                const macUrl = 'https://drive.google.com/u/0/uc?id=1NjaOGekRz-caLx1ec9CUvJ-Y6eFPj0AB&export=download&confirm=t';
+                const winUrl = 'https://drive.google.com/u/0/uc?id=1TKzgKrx1zSg-SsXMFNQdhOQ_jyTUgV8H&export=download&confirm=t';
 
                 if (isMac) {
                     showNotification('Opening macOS download page...', 'success');
