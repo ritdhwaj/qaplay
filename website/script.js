@@ -5,39 +5,37 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollAnimations();
     initSmoothScrolling();
     initNavbarEffects();
-    /**
+    initDownloadButtons();
+    initMobileMenu();
+});
+
+/**
  * Mobile Navigation Toggle
  */
-    function initMobileMenu() {
-        const menuToggle = document.getElementById('mobile-menu');
-        const navLinks = document.querySelector('.nav-links');
+function initMobileMenu() {
+    const menuToggle = document.getElementById('mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
 
-        if (menuToggle && navLinks) {
-            menuToggle.addEventListener('click', () => {
-                menuToggle.classList.toggle('active');
-                navLinks.classList.toggle('active');
-                // Prevent scrolling when menu is open
-                document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'initial';
-            });
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            // Prevent scrolling when menu is open
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'initial';
+        });
 
-            // Close menu when a link is clicked
-            const links = navLinks.querySelectorAll('a');
-            links.forEach(link => {
-                link.addEventListener('click', () => {
-                    menuToggle.classList.remove('active');
-                    navLinks.classList.remove('active');
-                    document.body.style.overflow = 'initial';
-                });
+        // Close menu when a link is clicked
+        const links = navLinks.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+                document.body.style.overflow = 'initial';
             });
-        }
+        });
     }
+}
 
-    // Initialize all components when DOM is loaded
-    document.addEventListener('DOMContentLoaded', () => {
-        initDownloadButtons();
-        initMobileMenu();
-    });
-});
 
 /**
  * Scroll-triggered animations using Intersection Observer
