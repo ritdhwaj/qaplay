@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Learn how to create powerful API mocks in QAPlay from captured network traffic. Configure custom responses, simulate errors, and test edge cases without backend dependencies.">
+    <meta name="keywords" content="API mocking, QAPlay tutorial, mock API, test automation, API testing">
+    <meta name="author" content="QAPlay Team">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://qaplay.in/blog/api-mocking-guide.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://qaplay.in/blog/api-mocking-guide.html">
+    <meta property="og:title" content="Getting Started with API Mocking in QAPlay">
+    <meta property="og:description" content="Learn how to create powerful API mocks from captured network traffic.">
+    <meta property="og:image" content="https://qaplay.in/app-design.png">
+
+    <title>Getting Started with API Mocking in QAPlay | QAPlay Blog</title>
+    <link rel="icon" type="image/png" href="../main.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+
+    <style>
+        .article-header {
+            margin-top: calc(var(--nav-height) + 40px);
+            padding: 60px 24px 40px;
+            text-align: center
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 24px
+        }
+
+        .article-tag {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--accent-primary);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500
+        }
+
+        .article-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.3
+        }
+
+        .article-info {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap
+        }
+
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 24px 100px
+        }
+
+        .article-content p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 24px;
+            font-size: 1.1rem
+        }
+
+        .article-content h2 {
+            color: var(--text-primary);
+            font-size: 2rem;
+            margin: 48px 0 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color)
+        }
+
+        .article-content h3 {
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            margin: 32px 0 16px
+        }
+
+        .article-content ul,
+        .article-content ol {
+            margin: 24px 0;
+            padding-left: 24px
+        }
+
+        .article-content li {
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            line-height: 1.7;
+            font-size: 1.05rem
+        }
+
+        .article-content strong {
+            color: var(--accent-primary);
+            font-weight: 600
+        }
+
+        .feature-highlight {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent-primary);
+            padding: 24px;
+            margin: 32px 0;
+            border-radius: 8px
+        }
+
+        .back-to-blog {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 40px;
+            transition: gap 0.3s ease
+        }
+
+        .back-to-blog:hover {
+            gap: 12px
+        }
+
+        .code-block {
+            background: rgba(99, 102, 241, 0.05);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+            overflow-x: auto
+        }
+
+        @media (max-width:768px) {
+            .article-header h1 {
+                font-size: 1.8rem
+            }
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"BlogPosting","headline":"Getting Started with API Mocking in QAPlay","description":"Learn how to create powerful API mocks from captured network traffic, configure custom responses, and test edge cases.","author":{"@type":"Organization","name":"QAPlay Team"},"datePublished":"2026-01-10","image":"https://qaplay.in/app-design.png","publisher":{"@type":"Organization","name":"QAPlay","logo":{"@type":"ImageObject","url":"https://qaplay.in/main.png"}}}
+    </script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <img src="../main.png" alt="QAPlay Logo" class="logo-img">
+                <span class="logo-text">QAPlay</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html#features">Features</a></li>
+                <li><a href="../index.html#tech-stack">Tech Stack</a></li>
+                <li><a href="index.html">Blog</a></li>
+            </ul>
+            <a href="../index.html#download" class="nav-cta">Download</a>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <div class="article-meta">
+            <span class="article-tag">Tutorial</span>
+            <span class="article-tag">API Mocking</span>
+        </div>
+        <h1>Getting Started with API Mocking in QAPlay</h1>
+        <div class="article-info">
+            <span>📅 January 5, 2026</span>
+            <span>✍️ Ritdhwaj Singh Chandel</span>
+            <span>📖 7 min read</span>
+        </div>
+    </header>
+
+    <main class="article-content">
+        <a href="index.html" class="back-to-blog">← Back to Blog</a>
+
+        <p>API mocking is one of the most powerful features in QAPlay, enabling you to test your application's behavior
+            under various scenarios without needing a live backend. Whether you're testing error handling, simulating
+            slow networks, or developing features before the API is ready, QAPlay makes it effortless.</p>
+
+        <h2>Why API Mocking Matters</h2>
+
+        <p>Traditional API testing often requires:</p>
+
+        <ul>
+            <li>A fully functional backend environment</li>
+            <li>Complex setup to trigger specific scenarios</li>
+            <li>Waiting for backend teams to implement endpoints</li>
+            <li>Manual manipulation of databases to create test conditions</li>
+        </ul>
+
+        <p>With API mocking, you can <strong>control the entire testing environment</strong>, making your tests faster,
+            more reliable, and completely independent of backend availability.</p>
+
+        <h2>Creating Your First Mock in QAPlay</h2>
+
+        <h3>Step 1: Capture Network Traffic</h3>
+
+        <p>First, launch QAPlay and start a browser session:</p>
+
+        <ol>
+            <li>Select your preferred browser (Chromium, Firefox, or WebKit)</li>
+            <li>Enter your application URL</li>
+            <li>Click "Launch & Record"</li>
+        </ol>
+
+        <p>As you interact with your application, QAPlay automatically captures all HTTP requests in the Network tab.
+        </p>
+
+        <h3>Step 2: Select a Request to Mock</h3>
+
+        <p>Browse through the captured requests and find the API call you want to mock. Look for:</p>
+
+        <ul>
+            <li>API endpoints returning user data</li>
+            <li>Authentication requests</li>
+            <li>Data fetching operations</li>
+            <li>Any request you want to customize</li>
+        </ul>
+
+        <p>Click on the request to expand its details and review the original response.</p>
+
+        <h3>Step 3: Create the Mock</h3>
+
+        <p>Click the <strong>"Create Mock"</strong> button. QAPlay automatically populates:</p>
+
+        <ul>
+            <li><strong>URL Pattern:</strong> The exact URL of the request</li>
+            <li><strong>Method:</strong> HTTP method (GET, POST, etc.)</li>
+            <li><strong>Status Code:</strong> Original status (usually 200)</li>
+            <li><strong>Response Body:</strong> The actual response data</li>
+            <li><strong>Headers:</strong> Response headers from the original request</li>
+        </ul>
+
+        <h2>Customizing Mock Responses</h2>
+
+        <p>Now comes the interesting part—customizing your mock to test specific scenarios.</p>
+
+        <h3>Testing Success Scenarios</h3>
+
+        <div class="code-block">
+            <strong>Example: Mock User Data</strong><br><br>
+            URL: https://api.example.com/users/123<br>
+            Status: 200<br>
+            Response:<br>
+            {<br>
+            &nbsp;&nbsp;"id": 123,<br>
+            &nbsp;&nbsp;"name": "Test User",<br>
+            &nbsp;&nbsp;"email": "test@example.com",<br>
+            &nbsp;&nbsp;"premium": true<br>
+            }
+        </div>
+
+        <h3>Testing Error Scenarios</h3>
+
+        <p>Change the status code to <strong>404</strong>, <strong>500</strong>, or any error code and customize the
+            response body:</p>
+
+        <div class="code-block">
+            <strong>Example: Mock 404 Error</strong><br><br>
+            Status: 404<br>
+            Response:<br>
+            {<br>
+            &nbsp;&nbsp;"error": "User not found",<br>
+            &nbsp;&nbsp;"code": "USER_NOT_FOUND"<br>
+            }
+        </div>
+
+        <h3>Simulating Network Delays</h3>
+
+        <p>Add a delay (in milliseconds) to simulate slow networks or timeout scenarios. This is perfect for testing
+            loading states and timeout handling.</p>
+
+        <div class="feature-highlight">
+            <strong>💡 Pro Tip:</strong> Start with a 3000ms delay to test your loading spinners, then increase to
+            10000ms to verify timeout handling works correctly.
+        </div>
+
+        <h2>Advanced Mock Patterns</h2>
+
+        <h3>URL Pattern Matching</h3>
+
+        <p>Instead of exact URLs, you can use patterns to match multiple endpoints:</p>
+
+        <ul>
+            <li><strong>Exact match:</strong> https://api.example.com/users/123</li>
+            <li><strong>Pattern match:</strong> https://api.example.com/users/* (matches any user ID)</li>
+            <li><strong>Query parameters:</strong> Include or exclude specific parameters</li>
+        </ul>
+
+        <h3>Method-Specific Mocks</h3>
+
+        <p>Create different mocks for the same URL but different HTTP methods:</p>
+
+        <ul>
+            <li><strong>GET /api/users:</strong> Return user list</li>
+            <li><strong>POST /api/users:</strong> Return created user with 201 status</li>
+            <li><strong>DELETE /api/users:</strong> Return 204 no content</li>
+        </ul>
+
+        <h2>Managing Your Mocks</h2>
+
+        <h3>Toggle Mocks On/Off</h3>
+
+        <p>Every mock has a toggle switch. This allows you to:</p>
+
+        <ul>
+            <li>Temporarily disable a mock without deleting it</li>
+            <li>Compare behavior with and without the mock</li>
+            <li>Keep a library of mocks for different test scenarios</li>
+        </ul>
+
+        <h3>Import/Export Mocks</h3>
+
+        <p>Share mocks with your team:</p>
+
+        <ol>
+            <li>Click <strong>"Export Mocks"</strong> to save them as JSON</li>
+            <li>Share the file with team members</li>
+            <li>They can import using <strong>"Import Mocks"</strong></li>
+        </ol>
+
+        <p>This ensures everyone has access to the same test data and can reproduce issues consistently.</p>
+
+        <h2>Real-World Use Cases</h2>
+
+        <h3>1. Feature Development</h3>
+
+        <p>Start building UI features before the backend APIs are ready. Create mocks with expected response structures
+            and develop against them.</p>
+
+        <h3>2. Error Handling Testing</h3>
+
+        <p>Test how your app handles various error scenarios without complex backend setup:</p>
+
+        <ul>
+            <li>Network timeouts (use delays)</li>
+            <li>400 Bad Request responses</li>
+            <li>401 Unauthorized (test login flows)</li>
+            <li>500 Internal Server Errors</li>
+            <li>Rate limiting (429 Too Many Requests)</li>
+        </ul>
+
+        <h3>3. Edge Case Testing</h3>
+
+        <p>Create mocks for rare scenarios that are hard to reproduce:</p>
+
+        <ul>
+            <li>Empty result sets</li>
+            <li>Maximum pagination limits</li>
+            <li>Special characters in data</li>
+            <li>Extremely long strings</li>
+        </ul>
+
+        <h3>4. Performance Testing</h3>
+
+        <p>Simulate slow APIs to test your application's performance under poor network conditions.</p>
+
+        <h2>Best Practices</h2>
+
+        <ol>
+            <li><strong>Organize mocks by feature:</strong> Use descriptive names like "user-profile-success" or
+                "payment-failure-insufficient-funds"</li>
+            <li><strong>Version your mocks:</strong> Export regularly and commit to version control</li>
+            <li><strong>Document mock purposes:</strong> Add comments in the response body explaining what the mock
+                tests</li>
+            <li><strong>Keep mocks realistic:</strong> Use real-world data structures and response times</li>
+            <li><strong>Test both paths:</strong> Create mocks for success AND failure scenarios</li>
+        </ol>
+
+        <h2>Common Pitfalls to Avoid</h2>
+
+        <ul>
+            <li><strong>Forgetting to disable mocks:</strong> Always check if mocks are active when debugging unexpected
+                behavior</li>
+            <li><strong>Overl complicated patterns:</strong> Start with exact matches, add patterns only when needed
+            </li>
+            <li><strong>Not testing without mocks:</strong> Periodically test against real APIs to ensure your mocks are
+                still accurate</li>
+        </ul>
+
+        <h2>Next Steps</h2>
+
+        <p>Now that you understand API mocking in QAPlay, try creating mocks for your own application. Start simple with
+            a single GET request, then gradually expand to more complex scenarios.</p>
+
+        <p>In our next post, we'll explore how to combine API mocking with session recording to create comprehensive
+            end-to-end tests that are both reliable and easy to maintain.</p>
+
+        <div class="feature-highlight" style="margin-top: 48px;">
+            <strong>📚 Learn More:</strong> Check out our <a href="introducing-qaplay.html"
+                style="color: var(--accent-primary);">Introduction to QAPlay</a> for a complete overview of all
+            features.
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="../main.png" alt="QAPlay Logo" class="logo-img">
+                        <span class="logo-text">QAPlay</span>
+                    </div>
+                    <p>Made with ❤️ for QA Engineers and Developers</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h5>Product</h5>
+                        <a href="../index.html#features">Features</a>
+                        <a href="../index.html#download">Download</a>
+                        <a href="index.html">Blog</a>
+                    </div>
+                    <div class="footer-column">
+                        <h5>Company</h5>
+                        <a href="../about-us.html">About Us</a>
+                        <a href="../contact-us.html">Contact Us</a>
+                        <a href="../privacy-policy.html">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 QAPlay. Open Source under MIT License.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+
+</html>
